@@ -1,5 +1,10 @@
 <h1 align=center>MARATONA-VIRADO-NO-JIRAYA</h1>
 
+<p align="center">
+  <img src="java.png" width="500">
+</p>
+
+#
 ### SOBRE
 
 - Repositório contendo o desenvolvimento na Maratona Java Virado no Jiraya, realizado na Dev Dojo.
