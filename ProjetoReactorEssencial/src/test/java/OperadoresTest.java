@@ -232,8 +232,30 @@ public class OperadoresTest {
     }
 
     @Test
+    public void concatDelayErrorOperador(){
+        // concatDelayError() -> semelahnte ao concat(), porem em caso de exception continua a execução
+        Flux<String> flux1 = Flux
+                .just("a", "b")
+                .map(s -> {
+                    if(s.equals("b"))
+                        throw new IllegalArgumentException();
+                    return s;
+                });
+        Flux<String> flux2 = Flux.just("c", "d");
+
+        Flux<String> fluxConcat = Flux
+                .concatDelayError(flux1, flux2)
+                .log();
+
+        StepVerifier.create(fluxConcat)
+                .expectNext("a", "c", "d")
+                .expectError()
+                .verify();
+    }
+
+    @Test
     public void concatWhithOperador(){
-        // concatWith() -> atribui os valores de um Flux á um já existente
+        // concatWith() -> adiciona os valores de um Flux á um já existente
         Flux<String> flux1 = Flux.just("a", "b");
         Flux<String> flux2 = Flux.just("c", "d");
 
@@ -260,7 +282,7 @@ public class OperadoresTest {
     }
 
     @Test
-    public void margeOperador() throws Exception {
+    public void mergeOperador() throws Exception {
         // merge() -> semelhante ao concat(), mas executa de forma EAGER(atribui os valores pela disposição e não pela sequencia)
         // ou seja, "quem chegar primeiro pega os primeiros lugares"
         Flux<String> flux1 = Flux.just("a", "b").delayElements(Duration.ofMillis(200));
@@ -278,7 +300,7 @@ public class OperadoresTest {
     }
 
     @Test
-    public void margeWithOperador() throws Exception {
+    public void mergeWithOperador() throws Exception {
         // mergeWith() -> semelhante ao concatWith(), mas com a execução do merge()
         Flux<String> flux1 = Flux.just("a", "b").delayElements(Duration.ofMillis(200));
         Flux<String> flux2 = Flux.just("c", "d");
@@ -292,5 +314,47 @@ public class OperadoresTest {
         StepVerifier.create(fluxMerge)
                 .expectNext("c", "d", "a", "b")
                 .verifyComplete();
+    }
+
+    @Test
+    public void mergeSequentialOperador() {
+        // mergeSequential() -> junta os valores e retorna um novo Flux, executando de forma LAZY(sequencial), semelhante ao concat()
+        Flux<String> flux1 = Flux.just("a", "b").delayElements(Duration.ofMillis(200));
+        Flux<String> flux2 = Flux.just("c", "d");
+
+        Flux<String> fluxMerge = Flux
+                .mergeSequential(flux1, flux2)
+                .delayElements(Duration.ofMillis(100))
+                .log();
+
+        fluxMerge.subscribe(log::info);
+
+        StepVerifier.create(fluxMerge)
+                .expectNext("a", "b", "c", "d")
+                .verifyComplete();
+    }
+
+    @Test
+    public void mergeDelayErrorOperador() {
+        // mergeDelayError() -> semelhante ao concatDelayError(), só que no contexto de merge.
+        // doOnError() -> consome o erro e interrompe o fluxo
+        Flux<String> flux1 = Flux
+                .just("a", "b")
+                .map(s -> {
+                    if(s.equals("b"))
+                        throw new IllegalArgumentException();
+                    return s;
+                })
+                .doOnError(t -> log.error(t.getMessage()))
+                .delayElements(Duration.ofMillis(200));
+
+        Flux<String> flux2 = Flux.just("c", "d");
+
+        Flux<String> fluxMerge = Flux
+                .mergeDelayError(1, flux1, flux2)
+                .delayElements(Duration.ofMillis(100))
+                .log();
+
+        fluxMerge.subscribe(log::info);
     }
 }
