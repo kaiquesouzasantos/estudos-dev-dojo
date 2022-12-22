@@ -1,14 +1,9 @@
-<h1 align=center>MARATONA VIRADO NO JIRAYA</h1>
+<h1 align=center>MARATONA-VIRADO-NO-JIRAYA</h1>
 
-<p align="center">
-  <img src="devDojo.png" width="500">
-</p>
-
-#
 ### SOBRE
 
 - Repositório contendo o desenvolvimento na Maratona Java Virado no Jiraya, realizado na Dev Dojo.
-- https://www.youtube.com/watch?v=VKjFuX91G5Q&list=PL62G310vn6nFIsOCC0H-C2infYgwm8SWW
+- *Referencia*: https://www.youtube.com/watch?v=VKjFuX91G5Q&list=PL62G310vn6nFIsOCC0H-C2infYgwm8SWW
 
 #
 ### CONTEUDO ABORDADO
