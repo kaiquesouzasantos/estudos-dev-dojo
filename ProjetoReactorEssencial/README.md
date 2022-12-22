@@ -24,7 +24,7 @@
 - Criação de Arquivos e Manipulação de Data;
 
 #
-### TECNOLOGIA
+### TECNOLOGIAS
 
 - [Java](https://docs.oracle.com/en/java)
 - [Project Reactor](https://projectreactor.io)
