@@ -407,7 +407,8 @@ public class OperadoresTest {
 
     @Test
     public void zipOperator() {
-        // zip() -> junta os valores de FLux até o momento onde é correspondido, ou seja, segue o limite do menor flux
+        // zip() -> junta os valores de FLux até o momento onde é correspondido, ou seja, segue o limite do menor flux.
+        // zipWith() -> semelhante ao zip(), mas só suporta 2 argumentos.
         Flux<String> nome = Flux.just("animal_1", "animal_2", "animal_3");
         Flux<String> cor = Flux.just("preto", "marrom", "branco");
         Flux<String> raca = Flux.just("raca_1", "raca_2", "raca_3");
