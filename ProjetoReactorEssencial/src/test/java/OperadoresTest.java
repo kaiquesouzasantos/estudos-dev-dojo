@@ -1,3 +1,5 @@
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -356,5 +358,67 @@ public class OperadoresTest {
                 .log();
 
         fluxMerge.subscribe(log::info);
+    }
+
+    @Test
+    public void flatMapOperator() {
+        // flatMap() -> aplica uma funcao ao valor, achatando a sua resultante, em execução EAGER
+        // map() -> retornou um flux de flux de strings, o flatMap() retornou um flux de strings
+        Flux<String> flux1 = Flux.just("A", "B");
+
+        Flux<Flux<String>> flux2 = flux1
+                .map(String::toUpperCase)
+                .map(this::findByName)
+                .log();
+
+        flux2.subscribe(valor -> log.info(valor.toString()));
+
+        Flux<String> flux3 = flux1
+                .map(String::toUpperCase)
+                .flatMap(this::findByName)
+                .log();
+
+        flux3.subscribe(log::info);
+    }
+
+    @Test
+    public void flatMapSequencialOperator() {
+        // flatMapSequencial() -> semelhante ao flatMap(), com execução LAZY sequencial
+        // flatMapSequencialDelayError()
+        Flux<String> flux1 = Flux.just("A", "B");
+
+        Flux<String> flux2 = flux1
+                .map(String::toUpperCase)
+                .flatMapSequential(this::findByName)
+                .log();
+
+        flux2.subscribe(log::info);
+    }
+
+    private Flux<String> findByName(String nome) {
+        return nome.equals("A") ? Flux.just("NOME_A1", "NOME_A2") : Flux.just("NOME_B1", "NOME_B2");
+    }
+
+    @AllArgsConstructor
+    @Data
+    static class Animal {
+        private String nome, cor, raca;
+    }
+
+    @Test
+    public void zipOperator() {
+        // zip() -> junta os valores de FLux até o momento onde é correspondido, ou seja, segue o limite do menor flux
+        Flux<String> nome = Flux.just("animal_1", "animal_2", "animal_3");
+        Flux<String> cor = Flux.just("preto", "marrom", "branco");
+        Flux<String> raca = Flux.just("raca_1", "raca_2", "raca_3");
+
+        // Flux<Tuple[quantidade_elementos_join]<[tipos_respectivos]>>
+        Flux<Animal> animalFlux = Flux
+                .zip(nome, cor, raca)
+                .flatMap(tupla ->
+                        Flux.just(new Animal(tupla.getT1(), tupla.getT2(), tupla.getT3()))
+                );
+
+        animalFlux.subscribe(valor -> log.info(valor.toString()));
     }
 }
