@@ -1,7 +1,7 @@
 <h1 align=center>ESTUDOS-DEV-DOJO</h1>
 
 <p align="center">
-  <img src="devdojo.png" width="500px">
+  <img src="devdojo.png" width="300">
 </p>
 
 #
