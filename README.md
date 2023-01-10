@@ -8,6 +8,7 @@
 ### SOBRE
 
 - Diretório contendo o estudo e desenvolvimento de tecnologias, realizado na Dev Dojo Academy.
+- Além de obter o contexto do curso, grande parte das aplicações desenvolvidas possuem alterações na codificação, arquitetura e funcionamento, baseadas em conhecimentos anteriores, objetivando melhores praticas.
 
 #
 ### TECNOLOGIAS
