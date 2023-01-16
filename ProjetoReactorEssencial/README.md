@@ -13,15 +13,7 @@
 #
 ### CONTEUDO ABORDADO
 
-- Classe, Metodo e Objeto;
-- Sobrecarga, Sobreescrita, Encapsulamento;
-- Herança e Polimorfismo;
-- Abstração, Interface e Enum;
-- Tipos de dados, Wrappers e Generics;
-- Coleção e Lambda;
-- Assertions e Identificação de Exceção;
-- Serialização e Modificadores;
-- Criação de Arquivos e Manipulação de Data;
+404
 
 #
 ### TECNOLOGIAS
