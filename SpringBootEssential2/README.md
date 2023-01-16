@@ -11,11 +11,6 @@
 - *Referencia*: https://www.youtube.com/watch?v=bCzsSXE4Jzg&list=PL62G310vn6nFBIxp6ZwGnm8xMcGE3VA5H
 
 #
-### CONTEUDO ABORDADO
-
-404
-
-#
 ### TECNOLOGIAS
 
 - [Java](https://docs.oracle.com/en/java)
