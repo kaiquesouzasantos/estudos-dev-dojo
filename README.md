@@ -13,5 +13,13 @@
 #
 ### TECNOLOGIAS
 - [Java](https://docs.oracle.com/en/java)
+- [Spring](https://docs.spring.io/spring-framework/docs/current/reference/html/)
+- [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
+- [Spring Web]()
+- [Spring Data]()
+- [Spring Validation]()
+- [Spring Test]
+- [PostgreSQL]()
+- [H2 database]()
 - [Project Reactor](https://projectreactor.io)
 - [JUnit](https://junit.org/junit5/)
