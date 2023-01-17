@@ -1,6 +1,7 @@
 package com.example.springbootessential2.repository;
 
 import com.example.springbootessential2.domain.AnimeModel;
+import com.example.springbootessential2.util.AnimeCreator;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 /*
     @DataJpaTest ->
-    - altera o banco de dados(para o que possui o scope test no pom), deve ser em do tipo memory(h2)
+    - altera o banco de dados(para o que possui o scope test no pom), deve ser do tipo memory(h2)
     - permite a injeção do repository
     - adota as caracteristicas de construção/relacionamentos de entidades no contexto do teste
 */
@@ -79,6 +80,6 @@ class AnimeRepositoryTest {
     }
 
     private AnimeModel createAnime(){
-        return new AnimeModel("teste");
+        return AnimeCreator.createAnimeToBeSaved();
     }
 }

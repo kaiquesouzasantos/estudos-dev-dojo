@@ -28,13 +28,13 @@ public class AnimeController {
 
     @GetMapping("/")
     public ResponseEntity<Page<AnimeModel>> list(Pageable pageable) {
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        //log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.status(HttpStatus.OK).body(animeService.listAll(pageable));
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<AnimeModel>> listAll() {
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        //log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.status(HttpStatus.OK).body(animeService.listAll());
     }
 
@@ -45,7 +45,7 @@ public class AnimeController {
 
     @GetMapping("/find")
     // @RequestParam ou @RequestParam("<nomeParametro>") ou @RequestParam(name = "<nomeParametro>")
-    public ResponseEntity<List<AnimeModel>> findById(@RequestParam(required = false) String nome) {
+    public ResponseEntity<List<AnimeModel>> findByName(@RequestParam(required = false) String nome) {
         return ResponseEntity.status(HttpStatus.OK).body(animeService.findbyName(nome));
     }
 
