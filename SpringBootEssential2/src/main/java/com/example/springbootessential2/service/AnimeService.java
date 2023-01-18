@@ -32,7 +32,7 @@ public class AnimeService {
         return animeRepository.findAll();
     }
 
-    public List<AnimeModel> findbyName(String nome){
+    public List<AnimeModel> findByName(String nome){
         return animeRepository.findByNome(nome);
     }
 

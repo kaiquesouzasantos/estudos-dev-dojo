@@ -46,7 +46,7 @@ public class AnimeController {
     @GetMapping("/find")
     // @RequestParam ou @RequestParam("<nomeParametro>") ou @RequestParam(name = "<nomeParametro>")
     public ResponseEntity<List<AnimeModel>> findByName(@RequestParam(required = false) String nome) {
-        return ResponseEntity.status(HttpStatus.OK).body(animeService.findbyName(nome));
+        return ResponseEntity.status(HttpStatus.OK).body(animeService.findByName(nome));
     }
 
     @PostMapping
