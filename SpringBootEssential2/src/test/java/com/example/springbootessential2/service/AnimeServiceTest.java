@@ -1,6 +1,7 @@
 package com.example.springbootessential2.service;
 
 import com.example.springbootessential2.domain.AnimeModel;
+import com.example.springbootessential2.exception.ExceptionGeneric;
 import com.example.springbootessential2.repository.AnimeRepository;
 import com.example.springbootessential2.util.AnimeCreator;
 import com.example.springbootessential2.util.AnimePostRequestBodyCreator;
@@ -84,6 +85,17 @@ class AnimeServiceTest {
         assertAll(
                 () -> assertNotNull(anime),
                 () -> assertEquals(idExpceted, anime.getId())
+        );
+    }
+
+    @Test
+    public void findById_ReturnsException_WhenAnimeIsNotFound(){
+        BDDMockito
+                .when(animeRepository.findById(ArgumentMatchers.anyLong()))
+                .thenReturn(Optional.empty());
+
+        assertThrows(
+                ExceptionGeneric.class, () -> animeService.findById(1L)
         );
     }
 

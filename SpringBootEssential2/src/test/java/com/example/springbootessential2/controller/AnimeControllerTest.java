@@ -60,7 +60,7 @@ class AnimeControllerTest {
 
         // estrutura para metodos com retorno void/vazio
         BDDMockito
-                .doNothing() // nao faca nada
+                .doNothing() // retorno void
                 .when(animeService) // -> somente o componente
                 .replace(ArgumentMatchers.any()); // -> metodo do componente
 
